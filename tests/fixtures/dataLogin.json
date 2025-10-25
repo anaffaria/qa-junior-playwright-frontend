@@ -1,14 +1,13 @@
 {
-    "url": "https://www.saucedemo.com/",
-    "urlProduct": "https://www.saucedemo.com/inventory.html",
-    "title": "Swag Labs",
-    "user": "standard_user",
-    "userInvalid": "gold_user",
-    "userLocked": "locked_out_user",
-    "password": "secret_sauce",
-    "passwordInvalid": "secret_sauc",
-    "messageErrorInvalidUser": "Epic sadface: Username and password do not match any user in this service",
-    "messageErrorLockedUser": "Epic sadface: Sorry, this user has been locked out.",
-    "messageErrorUserNameRequired": "Epic sadface: Username is required",
-    "messageErrorPassordRequired": "Epic sadface: Password is required"
+	"url": "https://www.saucedemo.com/",
+	"title": "Swag Labs",
+	"user": "standard_user",
+	"userInvalid": "gold_user",
+	"userLocked": "locked_out_user",
+	"password": "secret_sauce",
+	"passwordInvalid": "secret_sauc",
+	"messageErrorInvalidUser": "Epic sadface: Username and password do not match any user in this service",
+	"messageErrorLockedUser": "Epic sadface: Sorry, this user has been locked out.",
+	"messageErrorUserNameRequired": "Epic sadface: Username is required",
+	"messageErrorPassordRequired": "Epic sadface: Password is required"
 }

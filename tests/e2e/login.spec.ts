@@ -3,6 +3,7 @@ import { validUrl, validTitle } from '../utils/commands';
 
 import Login from '../pages/login/index';
 import dataLogin from '../fixtures/dataLogin.json';
+import dataProduct from '../fixtures/dataProduct.json';
 
 let login: Login;
 
@@ -19,7 +20,7 @@ test.describe('Suite de testes da tela de login', () => {
 
 		await login.clickLoginButton();
 		await validTitle(page, dataLogin.title);
-		await validUrl(page, dataLogin.urlProduct);
+		await validUrl(page, dataProduct.urlPage);
 	});
 
 	test('Tentativa de login com usuário inválido', async () => {
