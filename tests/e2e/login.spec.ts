@@ -1,62 +1,64 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { validUrl, validTitle } from '../utils/commands';
+
 import Login from '../pages/login/index';
-import data from '../fixtures/dataLogin.json';
+import dataLogin from '../fixtures/dataLogin.json';
 
 let login: Login;
 
 test.describe('Suite de testes da tela de login', () => {
 	test.beforeEach(async ({ page }) => {
 		login = new Login(page);
-		await login.visitPage(data.url);
-		await login.validTitlePage(data.title);
+		await login.visitPage(dataLogin.url);
+		await validTitle(page, dataLogin.title);
 	});
 
-	test('Realiza login com sucesso', async () => {
-		await login.writeUserInput(data.user);
-		await login.writePasswordInput(data.password);
+	test('Realiza login com sucesso', async ({ page }) => {
+		await login.writeUserInput(dataLogin.user);
+		await login.writePasswordInput(dataLogin.password);
 
 		await login.clickLoginButton();
-		await login.validTitlePage(data.title);
-		await login.validUrl(data.urlProduct);
+		await validTitle(page, dataLogin.title);
+		await validUrl(page, dataLogin.urlProduct);
 	});
 
 	test('Tentativa de login com usuário inválido', async () => {
-		await login.writeUserInput(data.userInvalid);
-		await login.writePasswordInput(data.password);
+		await login.writeUserInput(dataLogin.userInvalid);
+		await login.writePasswordInput(dataLogin.password);
 		await login.clickLoginButton();
 
-		await login.messageError(data.messageErrorInvalidUser);
+		await login.messageError(dataLogin.messageErrorInvalidUser);
 	});
 
 	test('Tentativa de login com senha inválida', async () => {
-		await login.writeUserInput(data.user);
-		await login.writePasswordInput(data.passwordInvalid);
+		await login.writeUserInput(dataLogin.user);
+		await login.writePasswordInput(dataLogin.passwordInvalid);
 		await login.clickLoginButton();
 
-		await login.messageError(data.messageErrorInvalidUser);
+		await login.messageError(dataLogin.messageErrorInvalidUser);
 	});
 
 	test('Tentativa de login com usuário bloqueado', async () => {
-		await login.writeUserInput(data.userLocked);
-		await login.writePasswordInput(data.password);
+		await login.writeUserInput(dataLogin.userLocked);
+		await login.writePasswordInput(dataLogin.password);
 		await login.clickLoginButton();
 
-		await login.messageError(data.messageErrorLockedUser);
+		await login.messageError(dataLogin.messageErrorLockedUser);
 	});
 
 	test('Tentativa de login sem informar usuário', async () => {
 		await login.writeUserInput('');
-		await login.writePasswordInput(data.password);
+		await login.writePasswordInput(dataLogin.password);
 		await login.clickLoginButton();
 
-		await login.messageError(data.messageErrorUserNameRequired);
+		await login.messageError(dataLogin.messageErrorUserNameRequired);
 	});
 
 	test('Tentativa de login sem informar senha', async () => {
-		await login.writeUserInput(data.user);
+		await login.writeUserInput(dataLogin.user);
 		await login.writePasswordInput('');
 		await login.clickLoginButton();
 
-		await login.messageError(data.messageErrorPassordRequired);
+		await login.messageError(dataLogin.messageErrorPassordRequired);
 	});
 });

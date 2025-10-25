@@ -12,6 +12,13 @@ class Product {
 		await productButton.click();
 	}
 
+	async goToCart() {
+		const cartBadge = this.page.locator(elements.cartBadge);
+		await cartBadge.waitFor({ state: 'visible' });
+		await cartBadge.click();
+	}
+
+	//Validations
 	async validQuantityCart(quantity: number) {
 		const cartBadge = this.page.locator(elements.cartBadge);
 
@@ -21,8 +28,6 @@ class Product {
 			await expect(cartBadge).toHaveText(quantity.toString());
 		}
 	}
-
-	//Validations
 }
 
 export default Product;
