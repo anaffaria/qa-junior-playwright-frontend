@@ -5,16 +5,19 @@ import Login from '../pages/login/index';
 import Product from '../pages/product/index';
 import Cart from '../pages/cart/index';
 import Form from '../pages/form/index';
+import Checkout from '../pages/checkout/index';
 
 import dataLogin from '../fixtures/dataLogin.json';
 import dataCart from '../fixtures/dataCart.json';
 import dataProduct from '../fixtures/dataProduct.json';
 import dataForm from '../fixtures/dataForm.json';
+import dataCheckout from '../fixtures/dataCheckout.json';
 
 let login: Login;
 let product: Product;
 let cart: Cart;
 let form: Form;
+let checkout: Checkout;
 
 test.describe('Suite de testes de checkout', () => {
 	test.beforeEach(async ({ page }) => {
@@ -22,6 +25,7 @@ test.describe('Suite de testes de checkout', () => {
 		product = new Product(page);
 		cart = new Cart(page);
 		form = new Form(page);
+		checkout = new Checkout(page);
 
 		await login.visitPage(dataLogin.url);
 		await validUrl(page, dataLogin.url);
@@ -54,5 +58,9 @@ test.describe('Suite de testes de checkout', () => {
 		await form.writeLastNameInput(dataForm.lastName);
 		await form.writeZipCodeInput(dataForm.zipCode);
 		await form.clickButton(dataForm.continueButton);
+
+		await validUrl(page, dataCheckout.urlPage);
+		await checkout.clickButton(dataCheckout.finishButton);
+		await checkout.orderCompleted(dataCheckout.orderCompleted);
 	});
 });

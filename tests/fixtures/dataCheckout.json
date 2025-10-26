@@ -1,3 +1,6 @@
 {
-	"urlPage": "https://www.saucedemo.com/checkout-step-two.html"
+	"urlPage": "https://www.saucedemo.com/checkout-step-two.html",
+	"finishButton": "Finish",
+	"cancelButton": "Cancel",
+	"orderCompleted": "Thank you for your order!"
 }
