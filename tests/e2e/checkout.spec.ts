@@ -4,20 +4,24 @@ import { validUrl, validTitle, validQuantityBadge } from '../utils/commands';
 import Login from '../pages/login/index';
 import Product from '../pages/product/index';
 import Cart from '../pages/cart/index';
+import Form from '../pages/form/index';
 
 import dataLogin from '../fixtures/dataLogin.json';
 import dataCart from '../fixtures/dataCart.json';
 import dataProduct from '../fixtures/dataProduct.json';
+import dataForm from '../fixtures/dataForm.json';
 
 let login: Login;
 let product: Product;
 let cart: Cart;
+let form: Form;
 
 test.describe('Suite de testes de checkout', () => {
 	test.beforeEach(async ({ page }) => {
 		login = new Login(page);
 		product = new Product(page);
 		cart = new Cart(page);
+		form = new Form(page);
 
 		await login.visitPage(dataLogin.url);
 		await validUrl(page, dataLogin.url);
@@ -42,7 +46,13 @@ test.describe('Suite de testes de checkout', () => {
 		await validUrl(page, dataCart.urlPage);
 
 		await cart.clickCheckoutButton();
+		await validUrl(page, dataForm.urlPage);
 	});
 
-	test('Finaliza uma compra', async ({ page }) => {});
+	test('Finaliza uma compra', async ({ page }) => {
+		await form.writeFirstNameInput(dataForm.firstName);
+		await form.writeLastNameInput(dataForm.lastName);
+		await form.writeZipCodeInput(dataForm.zipCode);
+		await form.clickButton(dataForm.continueButton);
+	});
 });
