@@ -16,9 +16,11 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: lts/*
 
@@ -35,14 +37,14 @@ jobs:
         run: npx playwright install chromium
 
       - name: Run Playwright tests (Chromium only)
-        run: npx playwright test --project=chromium --reporter=html,junit --output=test-results
+        run: npx playwright test --project=chromium
 
       - name: Publish JUnit Test Results
         if: ${{ always() }}
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          test-results: 'test-results/results.xml'
-          test-report-title: 'Playwright Tests'
+          files: 'test-results/results.xml'
+          report-name: 'Playwright Tests'
 
       - name: Upload HTML Report
         if: ${{ always() }}
