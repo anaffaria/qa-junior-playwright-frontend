@@ -43,8 +43,7 @@ jobs:
         if: ${{ always() }}
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          files: 'test-results/results.xml'
-          report-name: 'Playwright Tests'
+          junit_files: 'test-results/results.xml'
 
       - name: Upload HTML Report
         if: ${{ always() }}
