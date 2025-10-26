@@ -19,11 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
-
       - name: Install dependencies
         run: npm ci
 
@@ -39,12 +34,6 @@ jobs:
       - name: Run Playwright tests (Chromium only)
         run: npx playwright test --project=chromium
 
-      - name: Publish JUnit Test Results
-        if: ${{ always() }}
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        with:
-          junit_files: 'test-results/results.xml'
-
       - name: Upload HTML Report
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
@@ -52,3 +41,17 @@ jobs:
           name: playwright-html-report
           path: playwright-report/
           retention-days: 30
+
+      - name: Upload JUnit Test Results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-junit-results
+          path: test-results/results.xml
+          retention-days: 30
+
+      - name: Publish JUnit Test Results to GitHub Checks
+        if: ${{ always() }}
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: test-results/results.xml
