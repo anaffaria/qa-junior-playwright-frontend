@@ -14,7 +14,7 @@ Automatize os seguintes fluxos:
   - Finalizar uma compra com 2 ou mais produtos
     - Validação: mensagem Thank you for your order!
 
- # 🧪 Testes End-to-End com Playwright
+ #@ 🧪 Testes End-to-End com Playwright
 
  Este projeto utiliza o [Playwright](https://playwright.dev/) na versão `^1.56.1` para testes end-to-end (E2E).
  
