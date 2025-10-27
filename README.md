@@ -2,19 +2,19 @@
 
 Este repositório contém testes automatizados para o desafio Tagplus.
 
-## Parte 1 - Testes de API (GoRest)
+## Parte 2 Testes de Front-End
 
-Site: https://gorest.co.in/
+Site: https://www.saucedemo.com/
 
-Teste os seguintes verbos e endpoints: GET/POST/PUT/DELETE
-  - /users
-  - /posts
-  - /comments
+Automatize os seguintes fluxos:
+  - Login com sucesso e com dados incorretos
+    - Validação: sistema logado com sucesso e mensagem com erro
+  - Remover produtos de dentro do carrinho
+    - Validação: Quantidade de itens que sobrou no carrinho
+  - Finalizar uma compra com 2 ou mais produtos
+    - Validação: mensagem Thank you for your order!
 
-Valide status code, estrutura dos dados, e que o registro criado aparece no GET
-subsequente.
-
- # 🧪 Testes End-to-End com Cypress
+ # 🧪 Testes End-to-End com Playwright
 
  Este projeto utiliza o [Playwright](https://playwright.dev/) na versão `^1.56.1` para testes end-to-end (E2E).
  
